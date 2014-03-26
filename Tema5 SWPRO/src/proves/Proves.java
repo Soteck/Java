@@ -7,6 +7,10 @@
 
 package proves;
 
+import java.util.ArrayDeque;
+import java.util.HashSet;
+
+import contenidors.ElementParametritzat;
 import contenidors.ElementSencer;
 import contenidors.PilaParametritzat;
 import contenidors.PilaSencers;
@@ -111,6 +115,32 @@ public class Proves {
 		System.out.println("Quin ha estat el darrer en entrar? "+pila.peek());
 		
 	}
+	
+	private void provaHashSet(){
+		HashSet<Preferencia> hash = new HashSet<>();
+		
+	}
+	
+	private void provaCoaArrayDeque(){
+		ArrayDeque<String> array = new ArrayDeque<>();
+		System.out.println("Esta buid? " + array.isEmpty());
+		for (int contador = 0; contador < 10; contador++) {
+			array.add(contador +"");
+		}
+		
+		System.out.println("Esta buid? " + array.isEmpty());
+		System.out.println("Quants nhi ha? " + array.size());
+		System.out.println(array.remove());
+		System.out.println("Quants nhi ha? " + array.size());
+		System.out.println(array.element());
+		array.clear();
+		System.out.println("Quants nhi ha? " + array.size());
+		
+		
+		
+	}
+	
+	
 	private void provaPila() {
 
 		PilaParametritzat<String> pila = new PilaParametritzat<>();
@@ -134,7 +164,8 @@ public class Proves {
 		// proves.provaOrdenacio();
 		// proves.provaCercaBinaria();
 		// proves.provaCercaBinaria(1000);
-		proves.provaPila();
+		//proves.provaPila();
+		proves.provaCoaArrayDeque();
 
 	}
 
