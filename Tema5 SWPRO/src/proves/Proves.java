@@ -102,32 +102,51 @@ public class Proves {
 	private void provaPilaSencers() {
 
 		PilaSencers pila = new PilaSencers();
-		System.out.println("La pila esta buida? "+pila.empty());
+		System.out.println("La pila esta buida? " + pila.empty());
 		for (int contador = 0; contador < 10; contador++) {
 			pila.push(contador);
-			//System.out.println(element.getInfo());
+			// System.out.println(element.getInfo());
 		}
 		System.out.println("La pila esta buida? " + pila.empty());
-		System.out.println("Quin ha estat el darrer en entrar? "+pila.peek());
+		System.out.println("Quin ha estat el darrer en entrar? " + pila.peek());
 		pila.pop();
-		System.out.println("Quin ha estat el darrer en entrar? "+pila.peek());
+		System.out.println("Quin ha estat el darrer en entrar? " + pila.peek());
 		System.out.println("Provam un poll... " + pila.poll());
-		System.out.println("Quin ha estat el darrer en entrar? "+pila.peek());
-		
+		System.out.println("Quin ha estat el darrer en entrar? " + pila.peek());
+
 	}
-	
-	private void provaHashSet(){
+
+	private void provaHashSet() {
 		HashSet<Preferencia> hash = new HashSet<>();
+		Preferencia paella = new Preferencia(0, "paella");
+		System.out.println(hash.add(paella));
+		Preferencia paella2 = new Preferencia(0, "paellaaaa");
+		System.out.println(hash.add(paella2));
+		System.out
+				.println("No s'hauria de tornar a inserir pero se ha inserit ja que lo que comprova es la posicio de memoria, que relment si es diferent");
+		Preferencia pepino = new Preferencia(1, "pepinos");
+		System.out.println(hash.add(pepino));
+		System.out.println("Hi ha la -paella2- al mapa? "+hash.contains(paella2));
+		for(Preferencia a:hash){
+			System.out.println(a.getPlato());
+		}
+		System.out.println("El tamañ del hash es: "+hash.size());
+		System.out.println(hash.remove(paella));
+		for(Preferencia a:hash){
+			System.out.println(a.getPlato());
+		}
+		System.out.println("esta buid? " +hash.isEmpty());
 		
+
 	}
-	
-	private void provaCoaArrayDeque(){
+
+	private void provaCoaArrayDeque() {
 		ArrayDeque<String> array = new ArrayDeque<>();
 		System.out.println("Esta buid? " + array.isEmpty());
 		for (int contador = 0; contador < 10; contador++) {
-			array.add(contador +"");
+			array.add(contador + "");
 		}
-		
+
 		System.out.println("Esta buid? " + array.isEmpty());
 		System.out.println("Quants nhi ha? " + array.size());
 		System.out.println(array.remove());
@@ -135,27 +154,24 @@ public class Proves {
 		System.out.println(array.element());
 		array.clear();
 		System.out.println("Quants nhi ha? " + array.size());
-		
-		
-		
+
 	}
-	
-	
+
 	private void provaPila() {
 
 		PilaParametritzat<String> pila = new PilaParametritzat<>();
-		System.out.println("La pila esta buida? "+pila.empty());
+		System.out.println("La pila esta buida? " + pila.empty());
 		for (int contador = 0; contador < 10; contador++) {
-			pila.push(contador+"");
-			//System.out.println(element.getInfo());
+			pila.push(contador + "");
+			// System.out.println(element.getInfo());
 		}
 		System.out.println("La pila esta buida? " + pila.empty());
-		System.out.println("Quin ha estat el darrer en entrar? "+pila.peek());
+		System.out.println("Quin ha estat el darrer en entrar? " + pila.peek());
 		pila.pop();
-		System.out.println("Quin ha estat el darrer en entrar? "+pila.peek());
+		System.out.println("Quin ha estat el darrer en entrar? " + pila.peek());
 		System.out.println("Provam un poll... " + pila.poll());
-		System.out.println("Quin ha estat el darrer en entrar? "+pila.peek());
-		
+		System.out.println("Quin ha estat el darrer en entrar? " + pila.peek());
+
 	}
 
 	public static void main(String[] args) {
@@ -164,8 +180,9 @@ public class Proves {
 		// proves.provaOrdenacio();
 		// proves.provaCercaBinaria();
 		// proves.provaCercaBinaria(1000);
-		//proves.provaPila();
-		proves.provaCoaArrayDeque();
+		// proves.provaPila();
+		// proves.provaCoaArrayDeque();
+		proves.provaHashSet();
 
 	}
 
