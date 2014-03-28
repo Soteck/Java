@@ -43,6 +43,11 @@ public class Preferencia implements Comparable<Preferencia> {
 			
 	}
 
+	@Override
+	public String toString() {
+		return "Preferencia [orden=" + orden + ", plato=" + plato + "]";
+	}
+
 	
 	
 	

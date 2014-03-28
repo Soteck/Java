@@ -1,7 +1,7 @@
 package proves;
 
 
-public class Preferencia2 implements Comparable<Preferencia2> {
+public class PreferenciaComparator implements Comparable<PreferenciaComparator> {
 	private int orden;
 	private String plato;
 	
@@ -10,7 +10,7 @@ public class Preferencia2 implements Comparable<Preferencia2> {
 
 	}
 
-	public Preferencia2(int ordern, String plato) {
+	public PreferenciaComparator(int ordern, String plato) {
 		super();
 		this.orden = ordern;
 		this.plato = plato;
@@ -33,7 +33,7 @@ public class Preferencia2 implements Comparable<Preferencia2> {
 	}
 	
 	@Override
-	public int compareTo(Preferencia2 b) {
+	public int compareTo(PreferenciaComparator b) {
 		if(this.orden<b.orden){
 		return 1;
 		}else if(this.orden==b.orden)
@@ -60,7 +60,7 @@ public class Preferencia2 implements Comparable<Preferencia2> {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Preferencia2 other = (Preferencia2) obj;
+		PreferenciaComparator other = (PreferenciaComparator) obj;
 		if (orden != other.orden)
 			return false;
 		if (plato == null) {

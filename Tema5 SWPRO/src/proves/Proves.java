@@ -8,12 +8,14 @@
 package proves;
 
 import java.util.ArrayDeque;
+import java.util.HashMap;
 import java.util.HashSet;
 
 import contenidors.ElementParametritzat;
 import contenidors.ElementSencer;
 import contenidors.PilaParametritzat;
 import contenidors.PilaSencers;
+import utilitats.Algorismes;
 import utilitats.Cronometre;
 import utilitats.OrdenacioCerca;
 import utilitats.UtilitatsConsola;
@@ -28,7 +30,7 @@ public class Proves {
 
 	}
 
-	private void provaOrdenacio() {
+	private void provaOrdenacio(Algorismes condicio) {
 		Cronometre crono = new Cronometre();
 		UtilitatsConsola utilitats = new UtilitatsConsola();
 
@@ -44,17 +46,15 @@ public class Proves {
 
 		System.out.println();
 		System.out.println();
-		switch (utilitats
-				.llegirSencer("Quin metode voleu? 1 quickSort 2 bimbolla")) {
-		case 1:
+		if (condicio == Algorismes.QUICK_SORT) {
 			crono.start();
 			OrdenacioCerca.quickSort(array, 0, array.length - 1);
 			crono.stop();
 			System.out.println("Mostram array ordenat -quick - : ");
 			mostraArray(array);
 			System.out.println("Ha tardat: " + crono.temps() + "ms");
-			break;
-		case 2:
+		} else if (condicio == Algorismes.BIMBOLLA) {
+
 			crono.start();
 			System.out.println("Mostram array ordenat - bimbolla - : ");
 			OrdenacioCerca.bimbolla(array2);
@@ -62,13 +62,11 @@ public class Proves {
 			crono.stop();
 			System.out.println("Ha tardat: " + crono.temps() + "ms");
 
-			break;
-
-		default:
-
-			System.out.println("Error");
-
+		} else {
+			System.out.println("Error desconegut");
 		}
+
+		System.out.println("Error");
 
 	}
 
@@ -117,26 +115,73 @@ public class Proves {
 	}
 
 	private void provaHashSet() {
-		HashSet<Preferencia> hash = new HashSet<>();
-		Preferencia paella = new Preferencia(0, "paella");
+		HashSet<Preferencia2> hash = new HashSet<>();
+		Preferencia2 paella = new Preferencia2(0, "paella");
 		System.out.println(hash.add(paella));
-		Preferencia paella2 = new Preferencia(0, "paellaaaa");
+		Preferencia2 paella2 = new Preferencia2(0, "paellaaaa");
 		System.out.println(hash.add(paella2));
 		System.out
 				.println("No s'hauria de tornar a inserir pero se ha inserit ja que lo que comprova es la posicio de memoria, que relment si es diferent");
-		Preferencia pepino = new Preferencia(1, "pepinos");
+		Preferencia2 pepino = new Preferencia2(1, "pepinos");
 		System.out.println(hash.add(pepino));
-		System.out.println("Hi ha la -paella2- al mapa? "+hash.contains(paella2));
-		for(Preferencia a:hash){
+		System.out.println("Hi ha la -paella2- al mapa? "
+				+ hash.contains(paella2));
+		for (Preferencia2 a : hash) {
 			System.out.println(a.getPlato());
 		}
-		System.out.println("El tamañ del hash es: "+hash.size());
+		System.out.println("El tamañ del hash es: " + hash.size());
 		System.out.println(hash.remove(paella));
-		for(Preferencia a:hash){
+		for (Preferencia2 a : hash) {
 			System.out.println(a.getPlato());
 		}
-		System.out.println("esta buid? " +hash.isEmpty());
-		
+		System.out.println("esta buid? " + hash.isEmpty());
+
+	}
+
+	private void provaHashSet2() {
+		HashSet<Preferencia2> hash = new HashSet<>();
+		Preferencia2 paella = new Preferencia2(0, "paella");
+		System.out.println(hash.add(paella));
+		Preferencia2 paella2 = new Preferencia2(0, "paella");
+		System.out.println(hash.add(paella2));
+		System.out
+				.println("No s'ha inserit perque gracies al hascode, comprova els valors per dedins i troba que no son iguals");
+		Preferencia2 pepino = new Preferencia2(1, "pepinos");
+		System.out.println(hash.add(pepino));
+		System.out.println("Hi ha la -paella2- al mapa? "
+				+ hash.contains(paella2));
+		for (Preferencia2 a : hash) {
+			System.out.println(a.getPlato());
+		}
+		System.out.println("El tamañ del hash es: " + hash.size());
+		System.out.println(hash.remove(paella));
+		for (Preferencia2 a : hash) {
+			System.out.println(a.getPlato());
+		}
+		System.out.println("esta buid? " + hash.isEmpty());
+
+	}
+
+	private void provesHashMap() {
+		HashMap<String, Preferencia> mapa = new HashMap<>();
+		for (int index = 0; index < 3; index++) {
+			Preferencia a = new Preferencia(index, index + " paella");
+			mapa.put(a.getPlato(), a);
+		}
+		Preferencia prova = new Preferencia(10, "1 paella");
+		System.out.println(mapa.put(prova.getPlato(), prova));
+		System.out.println("hi ha la clau -1 paella- ? "
+				+ mapa.containsKey("1 paella"));
+		System.out.println("Aquest valor es al mapa? "
+				+ mapa.containsValue(prova));
+		System.out.println(mapa.get(prova.getPlato()).toString());
+		System.out.println("Nem a mostrar tot el mapa");
+		for (Preferencia d : mapa.values()) {
+			System.out.println(d.toString());
+		}
+		System.out.println(mapa.size());
+		System.out.println(mapa.remove(prova.getPlato()));
+		System.out.println("El mapa es buid?" + mapa.isEmpty());
 
 	}
 
@@ -182,7 +227,8 @@ public class Proves {
 		// proves.provaCercaBinaria(1000);
 		// proves.provaPila();
 		// proves.provaCoaArrayDeque();
-		proves.provaHashSet();
+		// proves.provaHashSet2();
+		proves.provesHashMap();
 
 	}
 
